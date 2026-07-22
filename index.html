@@ -1137,7 +1137,7 @@ color:white;">
 
 </footer>
 
-<script>
+<script type="module">
 
 let jumlah=1;
 
@@ -1300,6 +1300,47 @@ alert("Account Number Copied!");
 }
 
 updateTotal();
+
+
+// ===== TARUH FIREBASE DI SINI =====
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBgfEOefu44V3k8h40TLrrADJ5iKRLMjFA",
+  authDomain: "kirei-f28c5.firebaseapp.com",
+  projectId: "kirei-f28c5",
+  storageBucket: "kirei-f28c5.firebasestorage.app",
+  messagingSenderId: "878420348800",
+  appId: "1:878420348800:web:e48336d2f80ce6f1afbb65"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+window.kirimPesanan = async function(){
+
+let nama = document.getElementById("nama").value;
+
+
+await addDoc(collection(db,"pesanan"),{
+
+nama:nama
+
+});
+
+
+alert("Pesanan terkirim!");
+
+}
+
+
+</script>
 
 const card=document.querySelector(".order-card");
 
