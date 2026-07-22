@@ -192,7 +192,7 @@ background:
 radial-gradient(circle at top left,
 rgba(198,168,109,.12),
 transparent 35%),
-
+margin-top:30px;
 radial-gradient(circle at bottom right,
 rgba(76,100,68,.10),
 transparent 40%),
@@ -697,46 +697,77 @@ transform:translateY(-4px);
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:900px){
+@media (max-width:900px){
+.hero h1{
+font-size:38px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.order{
+padding:80px 5%;
+}
+
+.order-card{
+padding:20px;
+}
 
 form{
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.input-group,
+.input-group.full{
+width:100%;
+}
+
+.total-box{
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
+}
+
+.payment-grid{
 grid-template-columns:1fr;
 }
 
-.input-group.full,
-.total-box,
-.order-btn{
-grid-column:auto;
+.payment-card{
+width:100%;
 }
 
-.hero h1{
-font-size:45px;
+.payment-detail{
+padding:18px;
+}
+
+.qris-img{
+width:180px;
+}
+
+.order-btn{
+width:100%;
+margin-top:20px;
 }
 
 .timeline{
 flex-direction:column;
-align-items:flex-start;
 gap:25px;
 }
 
 .timeline-item{
 display:flex;
 align-items:center;
-gap:20px;
-width:100%;
+gap:18px;
 text-align:left;
-}
-
-.circle{
-margin:0;
+width:100%;
 }
 
 .line{
 display:none;
-}
-
-.timeline p{
-margin-top:0;
 }
 
 nav{
@@ -745,6 +776,8 @@ padding:15px 5%;
 
 nav ul{
 display:none;
+}
+
 }
 
 .order-card{
