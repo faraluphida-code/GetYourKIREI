@@ -962,6 +962,9 @@ onclick="pilihPayment(this,'QRIS')">
 
 
 <div id="paymentDetail" class="payment-detail active">
+<p><b>Account Number</b></p>
+<h2 id="rekening">2077557468</h2>
+<p>a.n KIREI</p>
 
 <button
 type="button"
@@ -975,8 +978,8 @@ Copy Account Number
 <button
 type="button"
 class="order-btn"
-onclick="kirimWA()">
-
+onclick="kirimPesanan(); kirimWA()"
+ 
 🌿 Order via WhatsApp
 
 </button>
@@ -1203,7 +1206,7 @@ window.open(
 );
 
 }
-let paymentMethod="BCA Transfer";
+let paymentMethod="BNI Transfer";
 
 function pilihPayment(card,metode){
 
@@ -1311,8 +1314,9 @@ alert("Pesanan terkirim!");
 
 }
 
+alert("Pesanan terkirim!");
 
-</script>
+}
 
 const card=document.querySelector(".order-card");
 
@@ -1351,5 +1355,4 @@ card.style.transform="translateY(0)";
 </script>
 
 </body>
-
 </html>
