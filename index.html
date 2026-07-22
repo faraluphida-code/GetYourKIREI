@@ -1208,17 +1208,29 @@ const db = getFirestore(app);
 
 window.kirimPesanan = async function(){
 
-let nama = document.getElementById("nama").value;
+const data = {
+    nama: document.getElementById("nama").value,
+    email: document.getElementById("email").value,
+    wa: document.getElementById("wa").value,
+    instansi: document.getElementById("instansi").value,
+    produk: document.getElementById("produk").options[document.getElementById("produk").selectedIndex].text,
+    jumlah: document.getElementById("qty").value,
+    total: document.getElementById("total").innerText,
+    payment: paymentMethod,
+    alamat: document.getElementById("alamat").value,
+    catatan: document.getElementById("catatan").value
+};
 
-
-await addDoc(collection(db,"pesanan"),{
-
-nama:nama
-
+fetch("https://script.google.com/macros/s/AKfycbx4kpCk-cUi5QlF_XPaKzzJ6u1QAazr2Op4jzKOFYsmH5BI02710tEAfxWcqU8zkScD/exec",{
+    method:"POST",
+    mode:"no-cors",
+    headers:{
+        "Content-Type":"application/x-www-form-urlencoded"
+    },
+    body:new URLSearchParams(data)
 });
 
-alert("Pesanan terkirim!");
-
+alert("Pesanan berhasil dikirim!");
 }
 
 const card=document.querySelector(".order-card");
