@@ -240,12 +240,12 @@ height:120px;
 .order{
 
 padding:100px 10%;
+margin-top:30px;
 
 background:
 radial-gradient(circle at top left,
 rgba(198,168,109,.12),
 transparent 35%),
-margin-top:30px;
 radial-gradient(circle at bottom right,
 rgba(76,100,68,.10),
 transparent 40%),
@@ -715,8 +715,6 @@ width:100%;
 padding:80px 5%;
 }
 
-}
-
 </style>
 
 </head>
@@ -848,19 +846,11 @@ KIREI Tissue (Rp20.000)
 
 <div class="qty-container">
 
-<button type="button" class="qty-btn" onclick="minus()">
-
--
-
-</button>
+<button type="button" class="qty-btn" onclick="minus()">-</button>
 
 <input type="text" id="qty" value="1" readonly>
 
-<button type="button" class="qty-btn" onclick="plus()">
-
-+
-
-</button>
+<button type="button" class="qty-btn" onclick="plus()">+</button>
 
 </div>
 
@@ -883,28 +873,6 @@ KIREI Tissue (Rp20.000)
 
 </div>
 
- <div class="payment-box">
-
-<div class="payment-title">
-
-Payment Method
-
-<div class="payment-grid">
-
-<div class="payment-card active"
-onclick="pilihPayment(this,'BNI')">
-
-<h4>💳 BNI Transfer</h4>
-
-<p>Transfer via Bank BNI</p>
-
-</div>
-
-<div class="payment-card"
-onclick="pilihPayment(this,'QRIS')">
-
-<h4>📱 QRIS</h4>
-
 <div class="payment-box">
 
     <div class="payment-title">
@@ -923,7 +891,6 @@ onclick="pilihPayment(this,'QRIS')">
 
         <div class="payment-card"
             onclick="pilihPayment(this,'QRIS')">
-
             <h4>📱 QRIS</h4>
             <p>Scan QR Code</p>
 
@@ -942,27 +909,28 @@ onclick="pilihPayment(this,'QRIS')">
         onclick="copyRekening()">
         Copy Account Number
         </button>
-
+		
     </div>
-
+		
+		<div class="input-group full">
+    <label>Upload Bukti Pembayaran</label>
+    <input type="file"
+           id="bukti"
+           name="bukti"
+           accept="image/*">
 </div>
-<button
-type="button"
-class="order-btn"
-onclick="kirimPesanan()">
-
+</div>
+<button type="submit" class="order-btn">
  Kirim Pesan
-
 </button>
-<button
-type="button"
+
+<button type="button"
 class="order-btn"
-onclick="kirimPesanan(); kirimWA()" > 
+onclick="kirimWA()" > 
  
 🌿 Order via WhatsApp
 
 </button>
-
 
 </section>
 
@@ -1041,7 +1009,7 @@ color:white;">
 
 </footer>
 
-<script type="module">
+<script>
 
 let jumlah=1;
 
@@ -1138,7 +1106,7 @@ window.open(
 let paymentMethod="BNI Transfer";
 
 function pilihPayment(card,metode){
-console.log(metode);
+
 paymentMethod=metode;
 
 document.querySelectorAll(".payment-card").forEach(c=>{
@@ -1205,113 +1173,7 @@ alert("Account Number Copied!");
 
 updateTotal();
 
-<!-- Right -->
-<div class="card">
-    <h2>Kirim Pesan</h2>
 
-<form id="contactForm"
-action="https://script.google.com/macros/s/AKfycbx4kpCk-cUi5QlF_XPaKzzJ6u1QAazr2Op4jzKOFYsmH5BI02710tEAfxWcqU8zkScD/exec"
-method="POST"
-target="hidden_iframe"
-onsubmit="setTimeout(showSuccess,1000);">
-
-<input type="text" name="nama" placeholder="Nama Lengkap" required>
-
-<input type="email" name="email" placeholder="Email" required>
-
-<input type="text" name="whatsapp" placeholder="whatsapp" required>
-
-<textarea name="shipping adress" placeholder="shipping adress" required></textarea>
-
-<button type="submit">Kirim Pesan</button>
-
-</form>
-
-<div id="success">✅ Pesan berhasil dikirim!</div>
-
-<iframe name="hidden_iframe" style="display:none;"></iframe>
-
-</div>
-
-</div>
-// ===== TARUH FIREBASE DI SINI =====
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBgfEOefu44V3k8h40TLrrADJ5iKRLMjFA",
-  authDomain: "kirei-f28c5.firebaseapp.com",
-  projectId: "kirei-f28c5",
-  storageBucket: "kirei-f28c5.firebasestorage.app",
-  messagingSenderId: "878420348800",
-  appId: "1:878420348800:web:e48336d2f80ce6f1afbb65"
-};
-
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-window.kirimPesanan = async function(){
-
-alert("MASUK FUNGSI");
-
-const data = {
-    nama: document.getElementById("nama").value
-};
-
-fetch("https://script.google.com/macros/s/AKfycbx4kpCk-cUi5QlF_XPaKzzJ6u1QAazr2Op4jzKOFYsmH5BI02710tEAfxWcqU8zkScD/exec",{
-    method:"POST",
-    mode:"no-cors",
-    body:new URLSearchParams(data)
-});
-
-alert("SELESAI");
-}
-}
-
-const card=document.querySelector(".order-card");
-
-card.style.opacity="0";
-card.style.transform="translateY(40px)";
-
-window.addEventListener("load",()=>{
-
-setTimeout(()=>{
-
-card.style.transition="all .8s ease";
-card.style.opacity="1";
-card.style.transform="translateY(0)";
-
-},300);
-
-});
-
-card.style.opacity="0";
-card.style.transform="translateY(40px)";
-
-window.addEventListener("load",()=>{
-
-setTimeout(()=>{
-
-card.style.transition="all .8s ease";
-
-card.style.opacity="1";
-
-card.style.transform="translateY(0)";
-
-},300);
-
-});
- 
-window.plus = plus;
-window.minus = minus;
-window.pilihPayment = pilihPayment;
-window.copyRekening = copyRekening;
-window.kirimWA = kirimWA;
- 
 </script>
 
 </body>
