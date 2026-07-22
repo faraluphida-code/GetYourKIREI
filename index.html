@@ -499,7 +499,75 @@ font-weight:bold;
 color:#C6A86D;
 
 }
+/* ================= PAYMENT ================= */
 
+.payment-box{
+
+grid-column:1/3;
+
+margin-top:25px;
+
+}
+
+.payment-title{
+
+font-size:22px;
+
+font-weight:700;
+
+color:#4C6444;
+
+margin-bottom:18px;
+
+}
+
+.payment-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+}
+
+.payment-card{
+
+border:2px solid #D8DECF;
+
+border-radius:18px;
+
+padding:20px;
+
+cursor:pointer;
+
+transition:.3s;
+
+background:white;
+
+}
+
+.payment-card:hover{
+border-color:#4C6444;
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.payment-card.active{
+border-color:#4C6444;
+background:#EEF2E8;
+}
+
+.payment-card h4{
+color:#4C6444;
+margin-bottom:8px;
+}
+
+.payment-card p{
+font-size:14px;
+color:#666;
+
+}
 /* ================= BUTTON ================= */
 
 .order-btn{
@@ -788,6 +856,55 @@ KIREI Tissue (Rp20.000)
 
 </div>
 
+ <div class="payment-box">
+
+<div class="payment-title">
+
+Payment Method
+
+</div>
+
+<div class="payment-grid">
+
+<div class="payment-card active"
+onclick="pilihPayment(this,'BCA Transfer')">
+
+<h4>🏦 BCA Transfer</h4>
+
+<p>Transfer via Bank BCA</p>
+
+</div>
+
+<div class="payment-card"
+onclick="pilihPayment(this,'Mandiri')">
+
+<h4>🏛 Mandiri</h4>
+
+<p>Transfer via Bank Mandiri</p>
+
+</div>
+
+<div class="payment-card"
+onclick="pilihPayment(this,'BNI')">
+
+<h4>💳 BNI</h4>
+
+<p>Transfer via Bank BNI</p>
+
+</div>
+
+<div class="payment-card"
+onclick="pilihPayment(this,'QRIS')">
+
+<h4>📱 QRIS</h4>
+
+<p>Scan QR Code</p>
+
+</div>
+
+</div>
+
+</div>
 <button
 type="button"
 class="order-btn"
@@ -1001,6 +1118,8 @@ ${produkDipilih}
 ${jumlah}
  Total :
 ${total}
+ Payment :
+${paymentMethod}
  Alamat :
 ${alamat}
  Catatan :
@@ -1017,6 +1136,21 @@ window.open(
 
 }
 
+let paymentMethod="BCA Transfer";
+
+function pilihPayment(card,metode){
+
+paymentMethod=metode;
+
+document.querySelectorAll(".payment-card").forEach(c=>{
+
+c.classList.remove("active");
+
+});
+
+card.classList.add("active");
+
+} 
 updateTotal();
 
 const card=document.querySelector(".order-card");
