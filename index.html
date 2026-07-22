@@ -1184,7 +1184,35 @@ alert("Account Number Copied!");
 
 updateTotal();
 
+<!-- Right -->
+<div class="card">
+    <h2>Kirim Pesan</h2>
 
+<form id="contactForm"
+action="https://script.google.com/macros/s/AKfycbx4kpCk-cUi5QlF_XPaKzzJ6u1QAazr2Op4jzKOFYsmH5BI02710tEAfxWcqU8zkScD/exec"
+method="POST"
+target="hidden_iframe"
+onsubmit="setTimeout(showSuccess,1000);">
+
+<input type="text" name="nama" placeholder="Nama Lengkap" required>
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="text" name="whatsapp" placeholder="whatsapp" required>
+
+<textarea name="shipping adress" placeholder="shipping adress" required></textarea>
+
+<button type="submit">Kirim Pesan</button>
+
+</form>
+
+<div id="success">✅ Pesan berhasil dikirim!</div>
+
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
+</div>
+
+</div>
 // ===== TARUH FIREBASE DI SINI =====
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
