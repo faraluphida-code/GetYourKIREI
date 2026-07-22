@@ -905,24 +905,45 @@ onclick="pilihPayment(this,'QRIS')">
 
 <h4>📱 QRIS</h4>
 
-<p>Scan QR Code</p>
+<div class="payment-box">
 
-</div>
+    <div class="payment-title">
+        Payment Method
+    </div>
 
-</div>
+    <div class="payment-grid">
 
+        <div class="payment-card active"
+            onclick="pilihPayment(this,'BNI')">
 
-<div id="paymentDetail" class="payment-detail active">
-<p><b>Account Number</b></p>
-<h2 id="rekening">2077557468</h2>
-<p>a.n KIREI</p>
+            <h4>💳 BNI Transfer</h4>
+            <p>Transfer via Bank BNI</p>
 
-<button
-type="button"
-class="copy-btn"
-onclick="copyRekening()">
-Copy Account Number
-</button>
+        </div>
+
+        <div class="payment-card"
+            onclick="pilihPayment(this,'QRIS')">
+
+            <h4>📱 QRIS</h4>
+            <p>Scan QR Code</p>
+
+        </div>
+
+    </div>
+
+    <div id="paymentDetail" class="payment-detail active">
+        <p><b>Account Number</b></p>
+        <h2 id="rekening">2077557468</h2>
+        <p>a.n KIREI</p>
+
+        <button
+        type="button"
+        class="copy-btn"
+        onclick="copyRekening()">
+        Copy Account Number
+        </button>
+
+    </div>
 
 </div>
 <button
